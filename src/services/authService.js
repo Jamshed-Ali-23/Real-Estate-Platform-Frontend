@@ -33,13 +33,16 @@ const authService = {
   },
 
   async logout() {
+    // Clear local storage first to ensure user is logged out
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    
+    // Try to call logout API but don't wait for it
     try {
       await api.post('/auth/logout')
     } catch (error) {
-      // Ignore logout errors
-    } finally {
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
+      // Ignore logout errors - user is already logged out locally
+      console.log('Logout API call skipped or failed - user logged out locally')
     }
   },
 

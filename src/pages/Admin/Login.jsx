@@ -43,16 +43,19 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
+      console.log('🔐 Attempting login...')
       const result = await login(data.email, data.password)
       
       if (result.success) {
         toast.success('Welcome back!')
-        navigate('/admin')
+        navigate('/admin', { replace: true })
       } else {
-        toast.error(result.error || 'Invalid credentials')
+        console.error('Login failed:', result.error)
+        toast.error(result.error || 'Invalid email or password')
       }
     } catch (error) {
-      toast.error('Login failed. Please try again.')
+      console.error('Login exception:', error)
+      toast.error(error?.message || 'Login failed. Please try again.')
     }
   }
 

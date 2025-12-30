@@ -21,16 +21,19 @@ const useAuthStore = create(
               isAuthenticated: true,
               user: response.data,
               loading: false,
-              error: null
+              error: null,
+              initialized: true
             })
             return { success: true }
           } else {
-            set({ loading: false, error: response.message })
+            set({ loading: false, error: response.message, initialized: true })
             return { success: false, error: response.message }
           }
         } catch (error) {
-          const errorMessage = error.message || 'Login failed'
-          set({ loading: false, error: errorMessage })
+          // Handle different error formats
+          const errorMessage = error?.message || error?.error || 'Login failed. Please check your credentials.'
+          console.error('Login error:', error)
+          set({ loading: false, error: errorMessage, initialized: true })
           return { success: false, error: errorMessage }
         }
       },
@@ -61,12 +64,15 @@ const useAuthStore = create(
       
       // Logout
       logout: async () => {
-        await authService.logout()
+        // Set state first for immediate UI update
         set({
           isAuthenticated: false,
           user: null,
-          error: null
+          error: null,
+          loading: false
         })
+        // Then call API (non-blocking)
+        await authService.logout()
       },
 
       // Refresh user data from API

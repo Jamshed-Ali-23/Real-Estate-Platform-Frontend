@@ -19,8 +19,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json'
   },
-  timeout: 30000, // 30 second timeout for production (Heroku can be slow on cold starts)
-  withCredentials: true // Enable credentials for CORS
+  timeout: 30000 // 30 second timeout for production (Heroku can be slow on cold starts)
 })
 
 // Request interceptor to add auth token and log requests
