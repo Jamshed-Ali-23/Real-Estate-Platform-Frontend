@@ -81,12 +81,11 @@ const Login = () => {
             <TextInput
               label="Email Address"
               type="email"
-              placeholder="agent@realestate.com"
+              placeholder="ahmed@khanrealestate.pk"
               error={errors.email?.message}
               {...register('email')}
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Password
@@ -94,7 +93,7 @@ const Login = () => {
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Enter your password"
+                placeholder="admin123"
                 className={`w-full px-4 py-3 rounded-xl border ${
                   errors.password ? 'border-red-500' : 'border-gray-200'
                 } focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 transition-all duration-200`}
