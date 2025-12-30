@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Production API URL - defaults to deployed Heroku backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://real-estate-platform-bf1c8ee4e0a4.herokuapp.com/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://real-estate-platform-backend-961dcacee3be.herokuapp.com/api'
 
 // Check if we're in development mode and should use local proxy
 const isDevelopment = import.meta.env.DEV
